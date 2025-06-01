@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Caminhos para os executáveis a testar
-EXECUTAVEIS=("../../SE2/2/prog22" "../3/prog33" "../4/prog34")
+EXECUTAVEIS=("../prog22SE2/prog22" "../3/prog33" "../4/prog34")
 
 # Textos e ficheiros de palavras
 TEXTOS="texto1.txt texto2.txt texto3.txt"

@@ -1,7 +1,7 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
-#include "../2/modules/vecloc.h"
+#include "../../2/modules/vecloc.h"
 #define TABLE_SIZE 1009 // número primo para melhor dispersão
 #define MAX 1024
 

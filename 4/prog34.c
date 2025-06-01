@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hashtable.h"
+#include "./modules/hashtable.h"
 #include "../2/modules/vecloc.h"
 #include "../1/modules/textread.h"
 #include "../3/modules/allFuncs.h"

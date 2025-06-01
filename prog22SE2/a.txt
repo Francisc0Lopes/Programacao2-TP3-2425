@@ -1,0 +1,3 @@
+Este é um exemplo.
+Contém a palavra coração.
+main

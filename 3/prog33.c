@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../1/modules/textread.h"
-#include "tree.h"
-#include "allFuncs.h"
+#include "./modules/tree.h"
+#include "./modules/allFuncs.h"
 
 int main(int argc, char *argv[]){
     if(argc < 2){
