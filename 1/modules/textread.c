@@ -1,68 +1,74 @@
-#include "textread.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
-#include <unistd.h>
+#include <string.h>
+#include <limits.h>
+#include <ctype.h>
+#include <stdbool.h>
 
-static FILE *text_file = NULL;
+static FILE *file = NULL;
+
+int textStart( char *fileName ){
+	if((file= fopen(fileName, "r"))){ 
+		return 1;
+	}
+    return 0;
+}
 
 
-int textStart(char *filename){
-    if(text_file != NULL){
-        fclose(text_file); // Fecha ficheiro anterior, se aberto
-        text_file = NULL;
+char *textSequenceLine( long *storeOffset ){
+	
+	if( storeOffset==NULL ){  
+		perror("No Offset to register");
+        exit(1);
     }
-
-    text_file = fopen(filename, "r");
-
-    if (text_file == NULL) return 0; // Erro ao abrir ficheiro
+    if(file == NULL){
+        perror("File is not opened");
+        exit(1);
+    }
     
-    return 1; 
-}
+	*storeOffset=ftell(file);
+	
+	char *storedline=NULL;
+	size_t line_length=0;
 
-char *textSequenceLine(long *storeOffset){
-    if(text_file == NULL)return NULL;
-
-    long offset = ftell(text_file);
+	
+    if(getline(&storedline, &line_length, file) == -1){ //getline aloca dinamicamente storedline
+        free(storedline);
+        return NULL;
+    }
     
-    if(storeOffset != NULL){
-        *storeOffset = offset;
-    }
-
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read = getline(&line, &len, text_file);
-
-    if(read == -1){
-        free(line);
-        return NULL; // Fim de ficheiro ou erro
-    }
-
-    return line; // O utilizador é responsável por libertar esta memória
+	return storedline;
 }
 
-char *textLocatedLine(long offset){
-    if(text_file == NULL) return NULL;
 
-    if(fseek(text_file, offset, SEEK_SET) != 0){
-        return NULL; // Erro ao posicionar
+
+char *textLocatedLine( long offset ){
+	char *offset_line=NULL;
+	size_t line_len =0;
+	
+    if(file == NULL){
+        perror("File is not opened");
+        exit(1);
     }
+    
+	if((fseek(file,offset,SEEK_SET))!=0){ // deslocamento de offset bytes, a partir de SEEK_SET(posiçao iniciall)
+		 free(offset_line);
+         return NULL;
+	}
 
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read = getline(&line, &len, text_file);
-
-    if(read == -1){
-        free(line);
-        return NULL; // Fim de ficheiro ou erro
+	if(getline(&offset_line, &line_len, file) == -1){
+        free(offset_line);  // Liberta memória se falhou a leitura
+        return NULL;
     }
-
-    return line; // O utilizador é responsável por libertar esta memória
+	
+	return offset_line;
 }
 
-void textEnd(void){
-    if(text_file != NULL){
-        fclose(text_file);
-        text_file = NULL;
+void textEnd( void ){
+	if(file!=NULL){
+		fclose(file);
+		file=NULL;
     }
 }
+
+

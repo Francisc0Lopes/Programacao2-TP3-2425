@@ -1,0 +1,4 @@
+A raposa rápida salta sobre o cão preguiçoso.
+O tempo está ensolarado e agradável.
+A linguagem C é poderosa e eficiente.
+Repetição de palavras ajuda a testar a performance.

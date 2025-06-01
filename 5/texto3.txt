@@ -1,0 +1,4 @@
+C é uma linguagem de programação estruturada.
+A prática leva à perfeição na arte da programação.
+Pesquisar palavras exige estrutura de dados eficiente.
+Eficiência e organização são fundamentais.

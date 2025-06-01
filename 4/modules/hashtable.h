@@ -1,11 +1,9 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
-#include "../../2/modules/vecloc.h"
-
-#define MAX 1024
+#include "../2/modules/vecloc.h"
 #define TABLE_SIZE 1009 // número primo para melhor dispersão
-
+#define MAX 1024
 
 typedef struct hlNode{ // Nó de uma lista de palavras no mesmo índice da tabela
  struct hlNode *next; // ponteiros de ligação na árvore
@@ -29,10 +27,6 @@ VecLoc *hFindWord( HTable *ht, char *data );
 void hDelete( HTable *ht ); 
 int wordStoreHash( char *word, void *context ); 
 
-
-
-//SE2
-int wordProcess( char *str, int (*action)( char *word, void *context ),void *context );
 
 
 

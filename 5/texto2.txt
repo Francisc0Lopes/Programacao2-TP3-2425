@@ -1,0 +1,4 @@
+Hoje em dia, muitos programadores aprendem C e Python.
+A performance é essencial em sistemas embutidos.
+Este é mais um exemplo de linha com palavras.
+Palavras repetidas, palavras diferentes, palavras diversas.
