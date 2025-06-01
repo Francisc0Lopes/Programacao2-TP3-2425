@@ -1,18 +1,11 @@
-CC = gcc
-CFLAGS = -Wall -g
-OBJ = modules/textread.o prog31.o
-TARGET = prog31
+prog31: prog31.o modules/textread.o
+    gcc -Wall -o prog31 prog31.o modules/textread.o
 
-all: $(TARGET)
+prog31.o: prog31.c modules/textread.h
+    gcc -Wall -c prog31.c
 
-$(TARGET): $(OBJ)
-	$(CC) -o $@ $^
-
-textread.o: modules/textread.c modules/textread.h
-	$(CC) $(CFLAGS) -c modules/textread.c
-
-prog31.o: prog31.c
-	$(CC) $(CFLAGS) -c prog31.c
+modules/textread.o: modules/textread.c modules/textread.h
+    gcc -Wall -c modules/textread.c -o modules/textread.o
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+    rm -f prog31 *.o modules/*.o

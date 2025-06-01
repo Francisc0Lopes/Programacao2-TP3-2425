@@ -1,20 +1,14 @@
-CC = gcc
-CFLAGS = -Wall -g
-OBJ = modules/vecloc.o prog32.o
-TARGET = prog32
-
-all: $(TARGET)
-
-$(TARGET): $(OBJ)
-	$(CC) -o $@ $^ ../1/modules/textread.o
-
-
-
-modules/vecloc.o: modules/vecloc.c modules/vecloc.h
-	$(CC) $(CFLAGS) -c modules/vecloc.c -o modules/vecloc.o
+prog32: prog32.o modules/vecloc.o ../1/modules/textread.o
+    gcc -Wall -g -o prog32 prog32.o modules/vecloc.o ../1/modules/textread.o
 
 prog32.o: prog32.c modules/vecloc.h ../1/modules/textread.h
-	$(CC) $(CFLAGS) -c prog32.c -o prog32.o
+    gcc -Wall -g -c prog32.c
+
+modules/vecloc.o: modules/vecloc.c modules/vecloc.h
+    gcc -Wall -g -c modules/vecloc.c -o modules/vecloc.o
+
+../1/modules/textread.o: ../1/modules/textread.c ../1/modules/textread.h
+    gcc -Wall -g -c ../1/modules/textread.c -o ../1/modules/textread.o
 
 clean:
-	rm -f $(OBJ) prog32.o $(TARGET)
+    rm -f prog32 *.o modules/*.o ../1/modules/textread.o
